@@ -3,63 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KR Meditech - Trusted Diagnostic Equipment Distributor</title>
-    <meta name="description" content="KR Meditech - Leading distributor of medical and laboratory diagnostic equipment. Supplying world-class medical machines with service excellence.">
+    <title>KR Meditech - Leading Diagnostic Equipment Distributor</title>
+    <meta name="description" content="KR Meditech - Premier distributor of diagnostic laboratory equipment and medical devices. Supplying hospitals, clinics, and healthcare facilities worldwide.">
+    <meta name="keywords" content="medical equipment, diagnostic devices, laboratory equipment, hospital supplies, healthcare technology">
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Top Banner -->
+    <div class="top-banner">
+        <div class="container">
+            <div class="banner-content">
+                <span class="banner-text">🏥 Authorized Distributor of Leading Medical Equipment Brands</span>
+                <div class="banner-actions">
+                    <a href="tel:+911234567890" class="banner-link">📞 +91 12345 67890</a>
+                    <a href="mailto:info@krmeditech.com" class="banner-link">✉️ info@krmeditech.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header Navigation -->
     <header class="header">
-        <nav class="nav">
-            <div class="nav-container">
-                <div class="nav-logo">
-                    <a href="#home" class="logo-link">
-                        <h1 class="logo-text">KR<span class="logo-accent">Meditech</span></h1>
-                    </a>
+        <div class="header-top">
+            <div class="container">
+                <div class="header-main">
+                    <div class="nav-logo">
+                        <a href="#home" class="logo-link">
+                            <div class="logo-container">
+                                <h1 class="logo-text">KR<span class="logo-accent">Meditech</span></h1>
+                                <span class="logo-tagline">Medical Excellence</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <input type="text" placeholder="Search products..." class="search-input">
+                            <button class="search-btn">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <button class="contact-btn btn btn-primary">Contact Sales</button>
+                        <div class="nav-toggle" id="nav-toggle">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                    </div>
                 </div>
-                
+            </div>
+        </div>
+        
+        <nav class="nav">
+            <div class="container">
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#products" class="nav-link">Products</a></li>
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#products" class="nav-link">Products <span class="dropdown-arrow">▼</span></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-column">
+                                    <h4>Diagnostic Imaging</h4>
+                                    <ul>
+                                        <li><a href="#">X-Ray Systems</a></li>
+                                        <li><a href="#">Ultrasound Machines</a></li>
+                                        <li><a href="#">CT Scanners</a></li>
+                                        <li><a href="#">MRI Systems</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Laboratory Equipment</h4>
+                                    <ul>
+                                        <li><a href="#">Biochemistry Analyzers</a></li>
+                                        <li><a href="#">Hematology Analyzers</a></li>
+                                        <li><a href="#">Immunoassay Systems</a></li>
+                                        <li><a href="#">Microbiology Systems</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-column">
+                                    <h4>Point of Care</h4>
+                                    <ul>
+                                        <li><a href="#">Glucose Meters</a></li>
+                                        <li><a href="#">Blood Gas Analyzers</a></li>
+                                        <li><a href="#">Rapid Tests</a></li>
+                                        <li><a href="#">Patient Monitors</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li class="nav-item"><a href="#brands" class="nav-link">Brands</a></li>
-                    <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#services" class="nav-link">Services <span class="dropdown-arrow">▼</span></a>
+                        <div class="dropdown-menu">
+                            <div class="dropdown-content">
+                                <div class="dropdown-column">
+                                    <ul>
+                                        <li><a href="#">Installation & Setup</a></li>
+                                        <li><a href="#">Technical Support</a></li>
+                                        <li><a href="#">Annual Maintenance</a></li>
+                                        <li><a href="#">Calibration Services</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
-                
-                <div class="nav-toggle" id="nav-toggle">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
             </div>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Trusted Diagnostic Equipment Distributor</h1>
-                    <p class="hero-subtitle">Supplying world-class medical and laboratory machines with service excellence.</p>
-                    <div class="hero-buttons">
-                        <a href="#products" class="btn btn-primary">Our Products</a>
-                        <a href="#contact" class="btn btn-secondary">Contact Sales</a>
+        <!-- Hero Slider Section -->
+        <section id="home" class="hero-slider">
+            <div class="slider-container">
+                <div class="slide active" data-slide="0">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <h1 class="slide-title">Advanced Diagnostic Solutions for Modern Healthcare</h1>
+                            <p class="slide-subtitle">Empowering medical professionals with cutting-edge laboratory and diagnostic equipment</p>
+                            <div class="slide-actions">
+                                <a href="#products" class="btn btn-primary btn-large">Explore Products</a>
+                                <a href="#contact" class="btn btn-secondary btn-large">Request Demo</a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <div class="hero-placeholder large">
+                                <svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="600" height="400" fill="url(#gradient1)"/>
+                                    <rect x="100" y="150" width="400" height="150" rx="12" fill="white" opacity="0.1"/>
+                                    <circle cx="300" cy="225" r="50" fill="white" opacity="0.2"/>
+                                    <path d="M270 225L330 225M300 195L300 255" stroke="white" stroke-width="4" stroke-linecap="round"/>
+                                    <defs>
+                                        <linearGradient id="gradient1" x1="0" y1="0" x2="600" y2="400">
+                                            <stop stop-color="#0ea5e9"/>
+                                            <stop offset="1" stop-color="#0284c7"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="hero-placeholder">
-                        <svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="400" height="300" fill="#f0f9ff"/>
-                            <rect x="50" y="100" width="300" height="100" rx="8" fill="#0ea5e9" opacity="0.1"/>
-                            <circle cx="200" cy="150" r="30" fill="#0ea5e9" opacity="0.2"/>
-                            <path d="M180 150L220 150M200 130L200 170" stroke="#0ea5e9" stroke-width="2"/>
-                        </svg>
+                
+                <div class="slide" data-slide="1">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <h1 class="slide-title">Comprehensive Laboratory Automation</h1>
+                            <p class="slide-subtitle">Streamline your diagnostic workflow with our integrated laboratory solutions</p>
+                            <div class="slide-actions">
+                                <a href="#products" class="btn btn-primary btn-large">View Solutions</a>
+                                <a href="#contact" class="btn btn-secondary btn-large">Consult Experts</a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <div class="hero-placeholder large">
+                                <svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="600" height="400" fill="url(#gradient2)"/>
+                                    <rect x="150" y="120" width="300" height="160" rx="8" fill="white" opacity="0.1"/>
+                                    <rect x="200" y="160" width="200" height="80" rx="4" fill="white" opacity="0.2"/>
+                                    <defs>
+                                        <linearGradient id="gradient2" x1="0" y1="0" x2="600" y2="400">
+                                            <stop stop-color="#16a34a"/>
+                                            <stop offset="1" stop-color="#15803d"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                
+                <div class="slide" data-slide="2">
+                    <div class="slide-content">
+                        <div class="slide-text">
+                            <h1 class="slide-title">Trusted by Healthcare Leaders</h1>
+                            <p class="slide-subtitle">Partner with industry-leading brands for reliable diagnostic excellence</p>
+                            <div class="slide-actions">
+                                <a href="#brands" class="btn btn-primary btn-large">Our Partners</a>
+                                <a href="#about" class="btn btn-secondary btn-large">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="slide-image">
+                            <div class="hero-placeholder large">
+                                <svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="600" height="400" fill="url(#gradient3)"/>
+                                    <circle cx="200" cy="200" r="60" fill="white" opacity="0.1"/>
+                                    <circle cx="400" cy="200" r="60" fill="white" opacity="0.1"/>
+                                    <circle cx="300" cy="150" r="40" fill="white" opacity="0.15"/>
+                                    <circle cx="300" cy="250" r="40" fill="white" opacity="0.15"/>
+                                    <defs>
+                                        <linearGradient id="gradient3" x1="0" y1="0" x2="600" y2="400">
+                                            <stop stop-color="#f59e0b"/>
+                                            <stop offset="1" stop-color="#d97706"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn" onclick="changeSlide(-1)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="slider-dots">
+                        <span class="dot active" onclick="currentSlide(0)"></span>
+                        <span class="dot" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                    </div>
+                    <button class="slider-btn next-btn" onclick="changeSlide(1)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </section>

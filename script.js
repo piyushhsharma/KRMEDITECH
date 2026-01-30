@@ -516,10 +516,69 @@ function initializeApp() {
         // Add any additional initialization here
         initializeSearch();
         initializeDropdowns();
+        initializeSlider();
         
     } catch (error) {
         console.error('Initialization error:', error);
     }
+}
+
+// Initialize simple slider for the hero section
+function initializeSlider() {
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    if (!slides || slides.length === 0) return;
+
+    let currentIndex = 0;
+    const total = slides.length;
+    let intervalId = null;
+
+    function showSlide(index) {
+        // wrap index
+        if (index >= total) index = 0;
+        if (index < 0) index = total - 1;
+
+        slides.forEach((s, i) => s.classList.toggle('active', i === index));
+        if (dots && dots.length) {
+            dots.forEach((d, i) => d.classList.toggle('active', i === index));
+        }
+        currentIndex = index;
+    }
+
+    // expose global functions used by inline onclick handlers
+    window.changeSlide = function(n) {
+        showSlide(currentIndex + n);
+    };
+
+    window.currentSlide = function(n) {
+        showSlide(n);
+    };
+
+    // Start auto-advance
+    function startAuto() {
+        stopAuto();
+        intervalId = setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, 5000);
+    }
+
+    function stopAuto() {
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+    }
+
+    // Pause on hover
+    const sliderContainer = document.querySelector('.slider-container');
+    if (sliderContainer) {
+        sliderContainer.addEventListener('mouseenter', stopAuto);
+        sliderContainer.addEventListener('mouseleave', startAuto);
+    }
+
+    // Initialize state
+    showSlide(0);
+    startAuto();
 }
 
 // Initialize search functionality

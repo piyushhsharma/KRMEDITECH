@@ -5,33 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KR Meditech - Leading Diagnostic Equipment Distributor</title>
     <meta name="description" content="KR Meditech - Premier distributor of diagnostic laboratory equipment and medical devices. Supplying hospitals, clinics, and healthcare facilities worldwide.">
-    <meta name="keywords" content="medical equipment, diagnostic devices, laboratory equipment, hospital supplies, healthcare technology">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="keywords" content="medical equipment, diagnostic devices, laboratory equipment, hospital supplies, healthcare technology, KR Meditech, diagnostic laboratory equipment, medical devices distribution">
+    <meta name="author" content="KR Meditech">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://krmeditech.com/">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="KR Meditech - Leading Diagnostic Equipment Distributor">
+    <meta property="og:description" content="Premier distributor of diagnostic laboratory equipment and medical devices. Supplying hospitals, clinics, and healthcare facilities worldwide.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://krmeditech.com/">
+    <meta property="og:image" content="https://krmeditech.com/images/og-image.jpg">
+    <meta property="og:site_name" content="KR Meditech">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KR Meditech - Leading Diagnostic Equipment Distributor">
+    <meta name="twitter:description" content="Premier distributor of diagnostic laboratory equipment and medical devices.">
+    <meta name="twitter:image" content="https://krmeditech.com/images/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS with preload for performance -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link" aria-label="Skip to main content">Skip to main content</a>
+    
     <!-- Top Banner -->
-    <div class="top-banner">
+    <div class="top-banner" role="banner">
         <div class="container">
             <div class="banner-content">
-                <span class="banner-text">🏥 Authorized Distributor of Leading Medical Equipment Brands</span>
+                <span class="banner-text" role="status" aria-live="polite">🏥 Authorized Distributor of Leading Medical Equipment Brands</span>
                 <div class="banner-actions">
-                    <a href="tel:+918209606056" class="banner-link">📞 +91 8209606056</a>
-                    <a href="mailto:info@krmeditech.com" class="banner-link">✉️ info@krmeditech.com</a>
+                    <a href="tel:+918209606056" class="banner-link" aria-label="Call us at +91 8209606056">📞 +91 8209606056</a>
+                    <a href="mailto:info@krmeditech.com" class="banner-link" aria-label="Email us at info@krmeditech.com">✉️ info@krmeditech.com</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Header Navigation -->
-    <header class="header">
+    <header class="header" role="banner">
         <div class="header-top">
             <div class="container">
                 <div class="header-main">
                     <div class="nav-logo">
-                        <a href="#home" class="logo-link">
+                        <a href="#home" class="logo-link" aria-label="KR Meditech - Home">
                             <div class="logo-container">
                                 <h1 class="logo-text">KR<span class="logo-accent">Meditech</span></h1>
                                 <span class="logo-tagline">Medical Excellence</span>
@@ -40,59 +70,59 @@
                     </div>
                     
                     <div class="header-actions">
-                        <div class="search-box">
-                            <input type="text" placeholder="Search products..." class="search-input">
-                            <button class="search-btn">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <div class="search-box" role="search">
+                            <input type="text" placeholder="Search products..." class="search-input" aria-label="Search products" id="search-input">
+                            <button class="search-btn" aria-label="Submit search" type="submit">
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                                     <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="2"/>
                                     <path d="M14 14L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                 </svg>
                             </button>
                         </div>
                         <button class="contact-btn btn btn-primary">Contact Sales</button>
-                        <div class="nav-toggle" id="nav-toggle">
+                        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                             <span class="bar"></span>
                             <span class="bar"></span>
                             <span class="bar"></span>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
         
-        <nav class="nav">
+        <nav class="nav" role="navigation" aria-label="Main navigation">
             <div class="container">
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#home" class="nav-link active" aria-current="page">Home</a></li>
                     <li class="nav-item dropdown">
-                        <a href="#products" class="nav-link">Products <span class="dropdown-arrow">▼</span></a>
-                        <div class="dropdown-menu">
+                        <a href="#products" class="nav-link" aria-haspopup="true" aria-expanded="false">Products <span class="dropdown-arrow" aria-hidden="true">▼</span></a>
+                        <div class="dropdown-menu" role="menu">
                             <div class="dropdown-content">
                                 <div class="dropdown-column">
                                     <h4>Diagnostic Imaging</h4>
-                                    <ul>
-                                        <li><a href="#">X-Ray Systems</a></li>
-                                        <li><a href="#">Ultrasound Machines</a></li>
-                                        <li><a href="#">CT Scanners</a></li>
-                                        <li><a href="#">MRI Systems</a></li>
+                                    <ul role="menu">
+                                        <li role="none"><a href="#" role="menuitem">X-Ray Systems</a></li>
+                                        <li role="none"><a href="#" role="menuitem">Ultrasound Machines</a></li>
+                                        <li role="none"><a href="#" role="menuitem">CT Scanners</a></li>
+                                        <li role="none"><a href="#" role="menuitem">MRI Systems</a></li>
                                     </ul>
                                 </div>
                                 <div class="dropdown-column">
                                     <h4>Laboratory Equipment</h4>
-                                    <ul>
-                                        <li><a href="#">Biochemistry Analyzers</a></li>
-                                        <li><a href="#">Hematology Analyzers</a></li>
-                                        <li><a href="#">Immunoassay Systems</a></li>
-                                        <li><a href="#">Microbiology Systems</a></li>
+                                    <ul role="menu">
+                                        <li role="none"><a href="#" role="menuitem">Biochemistry Analyzers</a></li>
+                                        <li role="none"><a href="#" role="menuitem">Hematology Analyzers</a></li>
+                                        <li role="none"><a href="#" role="menuitem">Immunoassay Systems</a></li>
+                                        <li role="none"><a href="#" role="menuitem">Microbiology Systems</a></li>
                                     </ul>
                                 </div>
                                 <div class="dropdown-column">
                                     <h4>Point of Care</h4>
-                                    <ul>
-                                        <li><a href="#">Glucose Meters</a></li>
-                                        <li><a href="#">Blood Gas Analyzers</a></li>
-                                        <li><a href="#">Rapid Tests</a></li>
-                                        <li><a href="#">Patient Monitors</a></li>
+                                    <ul role="menu">
+                                        <li role="none"><a href="#" role="menuitem">Glucose Meters</a></li>
+                                        <li role="none"><a href="#" role="menuitem">Blood Gas Analyzers</a></li>
+                                        <li role="none"><a href="#" role="menuitem">Rapid Tests</a></li>
+                                        <li role="none"><a href="#" role="menuitem">Patient Monitors</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -121,7 +151,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content" role="main">
         <!-- Hero Slider Section -->
         <section id="home" class="hero-slider">
             <div class="slider-container">
@@ -624,24 +654,30 @@
                     </div>
                     
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form id="contactForm" novalidate aria-labelledby="contact-form-heading">
+                            <h3 id="contact-form-heading" class="visually-hidden">Contact Form</h3>
                             <div class="form-group">
-                                <label for="name">Name *</label>
-                                <input type="text" id="name" name="name" required>
+                                <label for="name" class="form-label">Name <span class="required" aria-label="required">*</span></label>
+                                <input type="text" id="name" name="name" class="form-input" required aria-describedby="name-error" autocomplete="name">
+                                <div id="name-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" name="email" required>
+                                <label for="email" class="form-label">Email <span class="required" aria-label="required">*</span></label>
+                                <input type="email" id="email" name="email" class="form-input" required aria-describedby="email-error" autocomplete="email">
+                                <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
-                                <label for="phone">Phone *</label>
-                                <input type="tel" id="phone" name="phone" required>
+                                <label for="phone" class="form-label">Phone <span class="required" aria-label="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" class="form-input" required aria-describedby="phone-error" autocomplete="tel">
+                                <div id="phone-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
-                                <label for="message">Message *</label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
+                                <label for="message" class="form-label">Message <span class="required" aria-label="required">*</span></label>
+                                <textarea id="message" name="message" class="form-input" rows="5" required aria-describedby="message-error"></textarea>
+                                <div id="message-error" class="error-message" role="alert" aria-live="polite"></div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Send Message</button>
+                            <button type="submit" class="btn btn-primary" aria-describedby="form-status">Send Message</button>
+                            <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
                         </form>
                     </div>
                 </div>
@@ -713,6 +749,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

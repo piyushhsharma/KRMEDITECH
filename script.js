@@ -5,19 +5,66 @@ const navLinks = document.querySelectorAll('.nav-link');
 const header = document.querySelector('.header');
 const contactForm = document.getElementById('contactForm');
 
-// Mobile Navigation Toggle
-navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
+// Enhanced Mobile Navigation Toggle
+if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+        const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+        
+        // Toggle menu visibility
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+        
+        // Update ARIA attributes
+        navToggle.setAttribute('aria-expanded', !isExpanded);
+        
+        // Focus management for mobile menu
+        if (!isExpanded) {
+            // Menu is opening - focus first menu item
+            const firstMenuItem = navMenu.querySelector('.nav-link');
+            if (firstMenuItem) {
+                setTimeout(() => firstMenuItem.focus(), 100);
+            }
+        }
     });
-});
+    
+    // Close mobile menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        });
+    });
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navMenu.classList.contains('active') && 
+            !navMenu.contains(e.target) && 
+            !navToggle.contains(e.target)) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+    
+    // Keyboard navigation for mobile menu
+    navToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            navToggle.click();
+        }
+    });
+    
+    // Escape key to close menu
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
+            navToggle.focus();
+        }
+    });
+}
 
 // Header scroll effect
 window.addEventListener('scroll', () => {
@@ -48,32 +95,45 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Contact Form Handling
+// Enhanced Contact Form Handling
 if (contactForm) {
+    // Real-time validation
+    const inputs = contactForm.querySelectorAll('.form-input');
+    inputs.forEach(input => {
+        input.addEventListener('blur', () => validateField(input));
+        input.addEventListener('input', () => {
+            // Clear error when user starts typing
+            const errorElement = document.getElementById(`${input.id}-error`);
+            if (errorElement && input.value.trim() !== '') {
+                errorElement.textContent = '';
+            }
+        });
+    });
+
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Get form data
+        // Clear previous errors
+        clearAllErrors();
+        
+        let isValid = true;
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
         
-        // Basic validation
-        if (!data.name || !data.email || !data.phone || !data.message) {
-            showNotification('Please fill in all required fields', 'error');
-            return;
-        }
+        // Validate each field
+        inputs.forEach(input => {
+            if (!validateField(input)) {
+                isValid = false;
+            }
+        });
         
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email)) {
-            showNotification('Please enter a valid email address', 'error');
-            return;
-        }
-        
-        // Phone validation (basic)
-        const phoneRegex = /^[\d\s\-\+\(\)]+$/;
-        if (!phoneRegex.test(data.phone)) {
-            showNotification('Please enter a valid phone number', 'error');
+        if (!isValid) {
+            showFormStatus('Please correct the errors below', 'error');
+            // Focus first error field
+            const firstError = contactForm.querySelector('.form-input:invalid');
+            if (firstError) {
+                firstError.focus();
+            }
             return;
         }
         
@@ -83,14 +143,88 @@ if (contactForm) {
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
         
+        showFormStatus('Sending your message...', 'info');
+        
         // Simulate API call
         setTimeout(() => {
-            showNotification('Message sent successfully! We will contact you soon.', 'success');
+            showFormStatus('Message sent successfully! We will contact you soon.', 'success');
             this.reset();
             submitButton.textContent = originalText;
             submitButton.disabled = false;
+            
+            // Clear success message after 5 seconds
+            setTimeout(() => {
+                const statusElement = document.getElementById('form-status');
+                if (statusElement) {
+                    statusElement.textContent = '';
+                    statusElement.className = 'form-status';
+                }
+            }, 5000);
         }, 2000);
     });
+}
+
+// Field validation function
+function validateField(input) {
+    const errorElement = document.getElementById(`${input.id}-error`);
+    let isValid = true;
+    let errorMessage = '';
+    
+    // Check if required and empty
+    if (input.hasAttribute('required') && !input.value.trim()) {
+        errorMessage = `${input.previousElementSibling.textContent.replace(' *', '')} is required`;
+        isValid = false;
+    }
+    
+    // Email validation
+    if (input.type === 'email' && input.value.trim()) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.value)) {
+            errorMessage = 'Please enter a valid email address';
+            isValid = false;
+        }
+    }
+    
+    // Phone validation
+    if (input.type === 'tel' && input.value.trim()) {
+        const phoneRegex = /^[\d\s\-\+\(\)]+$/;
+        if (!phoneRegex.test(input.value) || input.value.replace(/\D/g, '').length < 10) {
+            errorMessage = 'Please enter a valid phone number (at least 10 digits)';
+            isValid = false;
+        }
+    }
+    
+    // Message validation
+    if (input.id === 'message' && input.value.trim()) {
+        if (input.value.trim().length < 10) {
+            errorMessage = 'Message must be at least 10 characters long';
+            isValid = false;
+        }
+    }
+    
+    // Display error or clear it
+    if (errorElement) {
+        errorElement.textContent = errorMessage;
+    }
+    
+    return isValid;
+}
+
+// Clear all form errors
+function clearAllErrors() {
+    const errorElements = contactForm.querySelectorAll('.error-message');
+    errorElements.forEach(element => {
+        element.textContent = '';
+    });
+}
+
+// Show form status message
+function showFormStatus(message, type) {
+    const statusElement = document.getElementById('form-status');
+    if (statusElement) {
+        statusElement.textContent = message;
+        statusElement.className = `form-status ${type}`;
+    }
 }
 
 // Notification System
@@ -330,4 +464,137 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-console.log('KR Meditech website initialized successfully');
+// Performance monitoring and error handling
+function logPerformance() {
+    if ('performance' in window) {
+        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+        console.log(`Page load time: ${loadTime}ms`);
+        
+        // Log performance metrics
+        if (performance.getEntriesByType) {
+            const navigation = performance.getEntriesByType('navigation')[0];
+            if (navigation) {
+                console.log('Performance Metrics:', {
+                    domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
+                    loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
+                    firstPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-paint')?.startTime,
+                    firstContentfulPaint: performance.getEntriesByType('paint').find(entry => entry.name === 'first-contentful-paint')?.startTime
+                });
+            }
+        }
+    }
+}
+
+// Error handling
+window.addEventListener('error', (e) => {
+    console.error('JavaScript error:', {
+        message: e.message,
+        filename: e.filename,
+        lineno: e.lineno,
+        colno: e.colno,
+        error: e.error
+    });
+    
+    // You could send this to an error tracking service
+    // sendErrorToService(e);
+});
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initializeApp();
+    });
+} else {
+    initializeApp();
+}
+
+function initializeApp() {
+    try {
+        logPerformance();
+        console.log('KR Meditech website initialized successfully');
+        
+        // Add any additional initialization here
+        initializeSearch();
+        initializeDropdowns();
+        
+    } catch (error) {
+        console.error('Initialization error:', error);
+    }
+}
+
+// Initialize search functionality
+function initializeSearch() {
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    
+    if (searchInput && searchBtn) {
+        searchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const query = searchInput.value.trim();
+            if (query) {
+                console.log('Searching for:', query);
+                // Implement search functionality
+                showNotification(`Searching for "${query}"...`, 'info');
+            }
+        });
+        
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchBtn.click();
+            }
+        });
+    }
+}
+
+// Initialize dropdown menus
+function initializeDropdowns() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const link = dropdown.querySelector('.nav-link');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (link && menu) {
+            // Keyboard navigation for dropdowns
+            link.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const isExpanded = link.getAttribute('aria-expanded') === 'true';
+                    link.setAttribute('aria-expanded', !isExpanded);
+                }
+                
+                // Arrow key navigation
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    const firstMenuItem = menu.querySelector('[role="menuitem"]');
+                    if (firstMenuItem) {
+                        firstMenuItem.focus();
+                    }
+                }
+            });
+            
+            // Focus trap for dropdown
+            const menuItems = menu.querySelectorAll('[role="menuitem"]');
+            menuItems.forEach((item, index) => {
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        const nextItem = menuItems[index + 1];
+                        if (nextItem) nextItem.focus();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        const prevItem = menuItems[index - 1];
+                        if (prevItem) {
+                            prevItem.focus();
+                        } else {
+                            link.focus();
+                        }
+                    } else if (e.key === 'Escape') {
+                        link.setAttribute('aria-expanded', 'false');
+                        link.focus();
+                    }
+                });
+            });
+        }
+    });
+}

@@ -15,7 +15,7 @@ if (navToggle && navMenu) {
         navToggle.classList.toggle('active');
         
         // Update ARIA attributes
-        navToggle.setAttribute('aria-expanded', !isExpanded);
+        navToggle.setAttribute('aria-expanded', String(!isExpanded));
         
         // Focus management for mobile menu
         if (!isExpanded) {
@@ -438,21 +438,8 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Performance monitoring
-function logPerformance() {
-    if ('performance' in window) {
-        const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-        console.log(`Page load time: ${loadTime}ms`);
-    }
-}
-
-// Log performance after page load
-window.addEventListener('load', logPerformance);
-
-// Error handling
-window.addEventListener('error', (e) => {
-    console.error('JavaScript error:', e.error);
-    // You could send this to an error tracking service
-});
+// (Simple performance logger and basic error handler removed —
+//  detailed logging and error handling defined later to avoid duplicates.)
 
 // Service Worker registration (for PWA functionality)
 if ('serviceWorker' in navigator) {
@@ -619,7 +606,7 @@ function initializeDropdowns() {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     const isExpanded = link.getAttribute('aria-expanded') === 'true';
-                    link.setAttribute('aria-expanded', !isExpanded);
+                    link.setAttribute('aria-expanded', String(!isExpanded));
                 }
                 
                 // Arrow key navigation
